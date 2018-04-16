@@ -10,8 +10,8 @@ try:
     from django.core.urlresolvers import (RegexURLResolver, RegexURLPattern,
                                       Resolver404, get_resolver)
 except ModuleNotFoundError:
-    from django.core.urls import (RegexURLResolver, RegexURLPattern,
-                                      Resolver404, get_resolver)  
+    from django.urls import (URLResolver, URLPattern,
+                             Resolver404, get_resolver)
 
 
 class NotSet(object):
