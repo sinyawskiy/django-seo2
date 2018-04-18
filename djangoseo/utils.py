@@ -9,7 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 try:
     from django.core.urlresolvers import (RegexURLResolver, RegexURLPattern,
                                       Resolver404, get_resolver)
-except ModuleNotFoundError:
+except ImportError:
     from django.urls import (URLResolver, URLPattern,
                              Resolver404, get_resolver)
 
