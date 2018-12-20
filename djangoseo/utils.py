@@ -9,9 +9,14 @@ from django.contrib.contenttypes.models import ContentType
 try:
     from django.urls.resolvers import URLResolver, RegexPattern as URLPattern, Resolver404, get_resolver
 except ImportError:
-    from django.core.urlresolvers import (
-        RegexURLResolver as URLResolver, RegexURLPattern as URLPattern, Resolver404, get_resolver
-    )
+    try:
+        from django.core.urlresolvers import (
+            RegexURLResolver as URLResolver, RegexURLPattern as URLPattern, Resolver404, get_resolver
+        )
+    except ImportError:
+        from django.urls import (
+            RegexURLResolver as URLResolver, RegexURLPattern as URLPattern, Resolver404, get_resolver
+        )
 
 
 class NotSet(object):
