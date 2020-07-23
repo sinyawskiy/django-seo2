@@ -9,11 +9,13 @@ import hashlib
 import collections
 
 from django.db import models
-from django.utils.functional import curry
+#from django.utils.functional import curry
+from functools import partial
+
 from django.contrib.contenttypes.models import ContentType
 from django.utils.safestring import mark_safe
 from django.core.cache import cache
-from django.utils.encoding import iri_to_uri, python_2_unicode_compatible
+from django.utils.encoding import iri_to_uri #, python_2_unicode_compatible
 from six import with_metaclass, text_type
 
 
@@ -24,8 +26,10 @@ from djangoseo.backends import backend_registry, RESERVED_FIELD_NAMES
 
 registry = collections.OrderedDict()
 
+def curry(func, *a, **kw):
+    return partial(func, *a, **kw)
 
-@python_2_unicode_compatible
+#@python_2_unicode_compatible
 class FormattedMetadata(object):
     """
     Allows convenient access to selected metadata.
@@ -143,7 +147,7 @@ class FormattedMetadata(object):
         return value
 
 
-@python_2_unicode_compatible
+#@python_2_unicode_compatible
 class BoundMetadataField(object):
     """
     An object to help provide templates with access to a "bound" metadata
