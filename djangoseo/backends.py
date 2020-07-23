@@ -188,7 +188,7 @@ class PathBackend(MetadataBackend):
         return queryset.filter(_path=path)
 
     def get_model(self, options):
-        @python_2_unicode_compatible
+        #@python_2_unicode_compatible
         class PathMetadataBase(MetadataBaseModel):
             _path = models.CharField(
                 _('path'),
@@ -252,7 +252,7 @@ class ViewBackend(MetadataBackend):
         return queryset.filter(_view=view_name or "")
 
     def get_model(self, options):
-        @python_2_unicode_compatible
+        #@python_2_unicode_compatible
         class ViewMetadataBase(MetadataBaseModel):
             __context = None
 
@@ -318,7 +318,7 @@ class ModelInstanceBackend(MetadataBackend):
         return queryset.filter(_path=path)
 
     def get_model(self, options):
-        @python_2_unicode_compatible
+        #@python_2_unicode_compatible
         class ModelInstanceMetadataBase(MetadataBaseModel):
             _path = models.CharField(
                 _('path'),
