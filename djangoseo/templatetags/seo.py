@@ -7,6 +7,11 @@ from django.template import VariableDoesNotExist
 from six import text_type, string_types
 
 from djangoseo.base import get_metadata, get_linked_metadata
+try:
+    from collections import Callable
+except ImportError:
+    from collections.abs import Callable
+
 
 register = template.Library()
 
@@ -30,7 +35,7 @@ class MetadataNode(template.Node):
                    "{% get_metadata for object %}")
             raise template.TemplateSyntaxError(msg)
         else:
-            if isinstance(target, collections.Callable):
+            if isinstance(target, Callable):
                 target = target()
             if isinstance(target, string_types):
                 path = target
