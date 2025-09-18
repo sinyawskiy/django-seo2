@@ -24,6 +24,11 @@ from djangoseo.options import Options
 from djangoseo.fields import MetadataField, Tag, MetaTag, KeywordTag, Raw
 from djangoseo.backends import backend_registry, RESERVED_FIELD_NAMES
 
+try:
+    from collections import Callable
+except ImportError:
+    from collections.abs import Callable
+
 registry = collections.OrderedDict()
 
 def curry(func, *a, **kw):
@@ -84,7 +89,7 @@ class FormattedMetadata(object):
         # TODO: This is duplicated in meta_models. Move this to a common home.
         if name in self.__metadata._meta.elements:
             populate_from = self.__metadata._meta.elements[name].populate_from
-            if isinstance(populate_from, collections.Callable):
+            if isinstance(populate_from, Callable):
                 return populate_from(None)
             elif isinstance(populate_from, Literal):
                 return populate_from.value
