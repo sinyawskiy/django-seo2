@@ -5,11 +5,16 @@ from django.contrib import admin
 from django.contrib.contenttypes.forms import BaseGenericInlineFormSet
 from django.contrib.contenttypes.admin import GenericStackedInline
 from django.contrib.contenttypes.models import ContentType
-from django.utils.encoding import smart_text
+try:
+    from django.utils.encoding import smart_text
+except ImportError:
+    from django.utils.encoding import smart_str as smart_text
 from django.forms.models import fields_for_model
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 from django.utils.text import capfirst
-
 from djangoseo.utils import get_seo_content_types
 from djangoseo.systemviews import get_seo_views
 
